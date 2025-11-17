@@ -154,6 +154,12 @@ app.post("/settle", async (req: Request, res: Response) => {
   }
 });
 
-app.listen(process.env.PORT || 3000, () => {
-  console.log(`Server listening at http://localhost:${process.env.PORT || 3000}`);
-});
+// For local development
+if (process.env.NODE_ENV !== "production") {
+  app.listen(process.env.PORT || 3000, () => {
+    console.log(`Server listening at http://localhost:${process.env.PORT || 3000}`);
+  });
+}
+
+// Export for Vercel
+export default app;
